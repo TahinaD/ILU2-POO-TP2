@@ -35,6 +35,8 @@ public class ControlLibererEtal {
 			if (etal.isEtalOccupe())
 				etal.libererEtal();
 		}
+		else
+			donneesEtal = null;
 		return donneesEtal;
 	}
 
