@@ -1,7 +1,6 @@
 package frontiere;
 
 import controleur.ControlAcheterProduit;
-import personnages.Gaulois;
 
 public class BoundaryAcheterProduit {
 	private ControlAcheterProduit controlAcheterProduit;
@@ -24,16 +23,16 @@ public class BoundaryAcheterProduit {
 		
 	}
 	
-	private void choisirVendeur(String nomAcheteur, Gaulois[] vendeursProduit, String produit) {
+	private void choisirVendeur(String nomAcheteur, String[] vendeursProduit, String produit) {
 		int choixUtilisateur;
 		do {
 			StringBuilder question = new StringBuilder();
 			question.append("Chez quel commerçant voulez-vous acheter des " + produit + " ?\n");
 			for (int i = 0; i < vendeursProduit.length; i++)
-				question.append((i+1) + " - " + vendeursProduit[i].getNom() + "\n");
+				question.append((i+1) + " - " + vendeursProduit[i] + "\n");
 			choixUtilisateur = Clavier.entrerEntier(question.toString());
 			if (choixUtilisateur > 0 && choixUtilisateur < vendeursProduit.length+1) {
-				String nomVendeur = vendeursProduit[choixUtilisateur-1].getNom();
+				String nomVendeur = vendeursProduit[choixUtilisateur-1];
 				acheterProduitAVendeur(nomAcheteur, nomVendeur, produit);
 			} else
 				System.out.println("Vous devez entrer un chiffre positif");
@@ -46,7 +45,7 @@ public class BoundaryAcheterProduit {
 			System.out.println("Je suis désolée" + nomAcheteur + ", mais il faut être un habitant de notre village pour commercer ici.\n");
 		} else {
 			String produit = Clavier.entrerChaine("Quel produit voulez-vous acheter ?\n");
-			Gaulois[] vendeursProduit = controlAcheterProduit.trouverEtalProduit(produit);
+			String[] vendeursProduit = controlAcheterProduit.trouverEtalProduit(produit);
 			if (vendeursProduit == null)
 				System.out.println("Désolé, personne ne vend ce produit au marché.\n");
 			else {

@@ -21,8 +21,15 @@ public class ControlAcheterProduit {
 		return controlVerifierIdentite.verifierIdentite(nomHabitant);
 	}
 	
-	public Gaulois[] trouverEtalProduit(String produit) {
-		return village.rechercherVendeursProduit(produit);
+	public String[] trouverEtalProduit(String produit) {
+		String[] nomVendeurs = null;
+		Gaulois[] vendeurs = village.rechercherVendeursProduit(produit);
+		if (vendeurs != null) {
+			nomVendeurs = new String[vendeurs.length];
+			for (int i = 0; i < vendeurs.length; i++)
+				nomVendeurs[i] = vendeurs[i].getNom();
+		}
+		return nomVendeurs;
 	}
 	
 	public int acheterProduit(String nomVendeur, int quantiteProduit) {
